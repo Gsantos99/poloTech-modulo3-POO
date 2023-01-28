@@ -25,23 +25,268 @@ class Animal {
   }
 }
 
-// const animal1 = new Animal('Elefante', 5)
+const animal1 = new Animal('Elefante', 5)
 // console.log(animal1.apresentar())
 
 class Mamifero extends Animal {
-  nome
-  idade
-  temPelo 
+  #temPelo
 
   constructor(nome, idade, temPelo) {
     super(nome, idade)
-    ;(this.nome = nome), (this.idade = idade), (this.temPelo = temPelo)
+    ;(this.nome = nome), (this.idade = idade), (this.#temPelo = temPelo)
   }
 
   apresentar() {
-    return `Oi! Eu sou um(a) ${this.nome} e sou mamifero`
+    return `Oi! Eu sou um(a) ${this.nome}, sou mamifero e ${
+      this.#temPelo ? 'tenho pelos' : 'não tenho pelos'
+    }`
   }
 }
 
-const mamifero1 = new Mamifero('lobo', 5, true)
-console.log(mamifero1.apresentar())
+const mamifero1 = new Mamifero('Lobo', 5, true, 'teste')
+// console.log(mamifero1.apresentar())
+
+class Ave extends Animal {
+  podeVoar
+
+  constructor(nome, idade, podeVoar) {
+    super(nome, idade)
+    ;(this.nome = nome), (this.idade = idade), (this.podeVoar = podeVoar)
+  }
+
+  apresentar() {
+    return `Oi! Eu sou um(a)${this.nome}e sou uma ave`
+  }
+
+  voar() {
+    return `${this.nome}está voando!`
+  }
+}
+
+const ave1 = new Ave('Pombo ', 5, true)
+// console.log(ave1.voar())
+
+class Peixe extends Animal {
+  respiraDebaixoDaAgua
+
+  constructor(nome, idade, respiraDebaixoDaAgua) {
+    super(nome, idade)
+    ;(this.nome = nome),
+      (this.idade = idade),
+      (this.respiraDebaixoDaAgua = respiraDebaixoDaAgua)
+  }
+
+  apresentar() {
+    return `Oi! Eu me chamo ${this.nome} e sou um peixe`
+  }
+
+  nadar() {
+    return `${this.nome} está nadando!`
+  }
+}
+
+const peixe1 = new Peixe('Nemo', 3, true)
+// console.log(peixe1.nadar())
+
+class Humano extends Mamifero {
+  sobrenome
+  cpf
+  endereco
+
+  constructor(nome, sobrenome, idade, cpf, endereco) {
+    super(nome, idade)
+    this.nome = nome
+    this.idade = idade
+    this.sobrenome = sobrenome
+    this.cpf = cpf
+    this.endereco = endereco
+  }
+
+  apresentar() {
+    return `Oi, me chamo ${this.nome} e sou humano(a)`
+  }
+}
+
+const humano1 = new Humano(
+  'Giulyano',
+  'Santos',
+  23,
+  true,
+  8172817223,
+  'Rua ABC DO DEF'
+)
+
+// console.log(humano1.apresentar())
+
+class Cachorro extends Mamifero {
+  raca
+
+  constructor(nome, raca, idade, temPelo) {
+    super(nome, idade, temPelo)
+    this.nome = nome
+    this.raca = raca
+    this.idade = idade
+    this.temPelo = temPelo
+  }
+
+  apresentar() {
+    return `Oi! Eu sou ${this.nome} e sou cachorro`
+  }
+
+  latir() {
+    return `${this.nome} está latindo!`
+  }
+}
+
+const dog1 = new Cachorro('Tobinho', 'pastor alemão', 2, true)
+// console.log(dog1.latir())
+
+class Desenvolvedor extends Humano {
+  tecnologia
+  sistemaQueUtiliza
+  anosDeXP
+
+  constructor(
+    nome,
+    sobrenome,
+    idade,
+    cpf,
+    endereco,
+    tecnologia,
+    sistemaQueUtiliza,
+    anosDeXP
+  ) {
+    super(nome, sobrenome, idade, cpf, endereco)
+    this.nome = nome
+    this.sobrenome = sobrenome
+    this.idade = idade
+    this.cpf = cpf
+    this.endereco = endereco
+    this.tecnologia = tecnologia
+    this.anosDeXP = anosDeXP
+    this.sistemaQueUtiliza = sistemaQueUtiliza
+  }
+
+  apresentar() {
+    return `Olá, me chamo ${this.nome} e sou um desenvolvedor(a)`
+  }
+
+  maisInfo() {
+    return `Tenho ${this.anosDeXP} anos de experiência e sei as seguintes tecnologias: ${this.tecnologia} `
+  }
+}
+
+const dev1 = new Desenvolvedor(
+  'Felipe',
+  'Silva',
+  25,
+  128718271,
+  'Rua Baker 221B',
+  ['HTML', 'CSS', 'JavaScript', 'React', 'SQL', 'Node'],
+  'Linux',
+  5
+)
+
+// console.log(dev1.maisInfo())
+
+class FrontEndDev extends Desenvolvedor {
+  constructor(
+    nome,
+    sobrenome,
+    idade,
+    cpf,
+    endereco,
+    tecnologia,
+    sistemaQueUtiliza,
+    anosDeXP
+  ) {
+    super(
+      nome,
+      sobrenome,
+      idade,
+      cpf,
+      endereco,
+      tecnologia,
+      sistemaQueUtiliza,
+      anosDeXP
+    )
+
+    this.nome = nome
+    this.sobrenome = sobrenome
+    this.idade = idade
+    this.cpf = cpf
+    this.endereco = endereco
+    this.tecnologia = tecnologia
+    this.anosDeXP = anosDeXP
+    this.sistemaQueUtiliza = sistemaQueUtiliza
+  }
+
+  reclamaComUx() {
+    return `A culpa é do UX! `
+  }
+}
+class BackEndDev extends Desenvolvedor {
+  constructor(
+    nome,
+    sobrenome,
+    idade,
+    cpf,
+    endereco,
+    tecnologia,
+    sistemaQueUtiliza,
+    anosDeXP
+  ) {
+    super(
+      nome,
+      sobrenome,
+      idade,
+      cpf,
+      endereco,
+      tecnologia,
+      sistemaQueUtiliza,
+      anosDeXP
+    )
+
+    this.nome = nome
+    this.sobrenome = sobrenome
+    this.idade = idade
+    this.cpf = cpf
+    this.endereco = endereco
+    this.tecnologia = tecnologia
+    this.anosDeXP = anosDeXP
+    this.sistemaQueUtiliza = sistemaQueUtiliza
+  }
+
+  darDesculpa() {
+    let numeroAleatorio = Math.floor(Math.random() * 10 + 1)
+    if (numeroAleatorio % 2 === 0) {
+      return `Na minha máquina funciona`
+    } else {
+      return `Terminei! Falta só testar`
+    }
+  }
+}
+
+const frontDev1 = new FrontEndDev(
+  'Jon',
+  'Snow',
+  24,
+  1276712612,
+  'Winterfell',
+  ['HTML', 'CSS', 'JavaScript', 'React', 'Angular', 'Google Cloud'],
+  'Windows',
+  7
+)
+const backDev1 = new BackEndDev(
+  'Bob',
+  'Esponja',
+  35,
+  989127212,
+  'Fenda do bikini',
+  ['JavaScript', 'Node', 'MongoDB', 'Express', 'Aws'],
+  'MacOs',
+  10
+)
+
+// console.log(frontDev1.maisInfo())
+console.log(backDev1.darDesculpa())
