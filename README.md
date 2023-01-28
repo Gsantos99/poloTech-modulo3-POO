@@ -19,7 +19,7 @@ Crie agora algumas classes de profissões como, por exemplo: "Advogado", "Medico
 
 Extendendo de Desenvolvedor, crie um FrontEnd e um BackEnd. Cada um deles deve ter métodos próprios e aproveita para adicionar também condicionais, como, por exemplo, o desenvolvedor BackEnd pode ter um método chamado darDesculpa(), onde você gera um número aleatório. Se ele for par, exibe a mensagem "Na minha máquina funciona" e se for impar "Terminei! Falta só testar".
 
-### Simulador Pokemon GO
+### 2º exercício - Simulador Pokemon GO
 
 Para nosso 2º exercício vamos tentar desenvolver um simulador de Pokemon GO aplicando todos os conceitos que aprendemos até agora durante as aulas. A ideia aqui é cadastrar diferentes tipo de pokemon e seus respectivos leveis. Também é necessário cadastrar um treinador. Nele devemos exibir quantos pokemon ele capturou até o momento.
 
