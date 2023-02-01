@@ -19,7 +19,7 @@ Crie agora algumas classes de profissões como, por exemplo: "Advogado", "Medico
 
 Extendendo de Desenvolvedor, crie um FrontEnd e um BackEnd. Cada um deles deve ter métodos próprios e aproveita para adicionar também condicionais, como, por exemplo, o desenvolvedor BackEnd pode ter um método chamado darDesculpa(), onde você gera um número aleatório. Se ele for par, exibe a mensagem "Na minha máquina funciona" e se for impar "Terminei! Falta só testar".
 
-### 2º exercício - Simulador Pokemon GO
+### 2º exercício - Simulador de Pokemon GO
 
 Para nosso 2º exercício vamos tentar desenvolver um simulador de Pokemon GO aplicando todos os conceitos que aprendemos até agora durante as aulas. A ideia aqui é cadastrar diferentes tipo de pokemon e seus respectivos leveis. Também é necessário cadastrar um treinador. Nele devemos exibir quantos pokemon ele capturou até o momento.
 
@@ -29,3 +29,27 @@ Toda vez que uma pokebola é usada, dando certo ou errado, será preciso reduzir
 
 Após 3 tentativas de captura, se não der certo, o pokemon selvagem automaticamente fugiu. Caso seja realizada a captura com sucesso, devemos incrementar a quantidade de pokemons que o treinador possui.
 
+### 3º exercício - Todo List
+
+A ToDo List deve ser capaz de:
+
+<li> Listar atividades </li>
+
+<li> Adicionar atividades </li>
+
+<li> Deletar atividades </li>
+
+<li> Editar atividades </li>
+
+<li> Marcar atividades (concluida/nao-concluida) </li>
+
+Plus: tag prioridade (baixa, normal, alta, altissima)
+
+// Detalhes para o projeto! 
+Equipes: Solo Dupla Trio Grupo All-in
+
+item1 = new Item('Fazer atividade', '2023-02-06', 'alta'); item2 = new Item('Ler um livro', '2023-02-06', 'normal'); item3 = new Item('Jogar Pokemon', '2023-02-06', 'altissima'); item4 = new Item('Assistir Pokemon', '2023-02-06', 'baixa');
+
+lista = [item1, item2, item3, item4];
+
+item1.editar('Fazer nova atividade', '2023-02-25', 'baixa'); item2.deletar(); item3.marcar(); item5 = new Item('Assistir Pokemon', '2023-02-06', 'baixa'); lista.adicionar(item5);

@@ -1,0 +1,19 @@
+body {
+  background-color: lightgrey;
+}
+
+
+header {
+  /* background-color: red; */
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  /* background-color: blue; */
+
+  margin: 0 auto;
+  height: 500px;
+  width: 90vw;
+}
+

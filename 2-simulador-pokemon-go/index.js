@@ -8,7 +8,9 @@
 
 // Simulador de pokemon Go
 
+
 // Classes
+
 
 class Treinador {
   nome
@@ -64,18 +66,21 @@ class Treinador {
   }
 }
 
+// TODO level do pokemon é aleatório
+
 class Pokemon {
   nome
   tipo
   nivel
   selvagem
 
+  // TODO melhorar esse erro, colocar um try e catch
   constructor(nome, tipo, nivel, selvagem) {
     ;(this.nome = nome), (this.tipo = tipo)
     if (nivel >= 1 && nivel <= 100) {
       this.nivel = nivel
     } else {
-      throw `Nível inváido, pokemons podem ter um nível de 1 a 100`
+      throw `Nível inválido, pokemons podem ter um nível de 1 a 100`
     }
     this.selvagem = selvagem
   }
@@ -84,36 +89,29 @@ class Pokemon {
 // Função de batalha
 
 function batalhar(treinador, pokemon) {
-  let tentativasDeCaptura = 0
-
   treinador.qtdPokebolas--
-  tentativasDeCaptura++
 
-  let chanceCaptura = Math.floor(
-    Math.random() * (100 - 1 + 1) + 1 + treinador.qtdPokemons - pokemon.nivel
-  )
+  // TODO Criar limitador de tentativas
+
+  let chanceCaptura = Math.floor(Math.random() * 99 + 1)
 
   if (!pokemon.selvagem) {
     return `${pokemon.nome} não é selvagem!`
   }
 
   if (treinador.qtdPokebolas < 1) {
-    return `Você está sem pokebolas!`
+    return `Você está sem pokebolas! `
   }
 
-  if (tentativasDeCaptura > 3) {
-    return ` ${pokemon.nome} fugiu! `
+  if (chanceCaptura >= 0 && chanceCaptura <= 25) {
+    return `${pokemon.nome} escapou da pokebola! `
   }
 
-  if (chanceCaptura <= 1 && chanceCaptura <= 33) {
-    return `${pokemon.nome} escapou da pokebola!`
+  if (chanceCaptura >= 25 && chanceCaptura <= 50) {
+    return `${pokemon.nome} escapou da pokebola! `
   }
 
-  if (chanceCaptura >= 33 && chanceCaptura <= 66) {
-    return `${pokemon.nome} escapou da pokebola!`
-  }
-
-  if (chanceCaptura >= 66 && chanceCaptura <= 100) {
+  if (chanceCaptura >= 50 && chanceCaptura <= 100) {
     // Aumento a quantidade de pokemons do treinador!
     pokemon.selvagem = false
     treinador.qtdPokemons++
@@ -122,12 +120,7 @@ function batalhar(treinador, pokemon) {
 }
 
 // Instanciando as classes
-const treinador1 = new Treinador('Ash', 15, 'Pallet', 0, 10)
+const treinador1 = new Treinador('Ash', 15, 'Pallet', 5, 5)
 const pokemon1 = new Pokemon('Pikachu', 'Elétrico', 15, true)
 
-console.log(treinador1.pokemons)
-console.log(treinador1.pokebolas)
-console.log(batalhar(treinador1, pokemon1))
-console.log(pokemon1)
 console.log(treinador1)
-console.log(batalhar(treinador1, pokemon1))
