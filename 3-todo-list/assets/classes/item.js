@@ -20,30 +20,13 @@ export class Item {
   descricao
   data
   prioridade
-  status
 
-  constructor(descricao, data, prioridade, status) {
+  constructor(descricao, data, prioridade) {
     this.descricao = descricao
     this.data = data
     this.prioridade = prioridade
-    this.status = status
-  }
 
-  // Métodos
-  addTarefa() {
-    //
-  }
-
-  deletarTarefa() {
-    //
-  }
-  editarTarefa() {
-    //
-  }
-  marcarTarefa() {
-    //
   }
 }
 
-// const item1 = new Item('Treinar', '2023-02-01', 'normal', 'não concluída')
-// console.log(item1)
+
