@@ -19,13 +19,16 @@ btnForm.addEventListener('click', e => {
   // Previne o submit
   e.preventDefault()
 
-  // Cria objetos e manda dados para a função
+  // TODO Criar um validador pra impedir o envio de objetos vazios
+
+  // Cria novos objetos e manda para função que cria eles
   let tarefa = new Item(descricao.value, data.value, prioridade.value)
   listaDeTarefas.push(tarefa)
-  inserirTarefa(tarefa.descricao, tarefa.data, tarefa.prioridade)
+  renderTarefa(tarefa.descricao, tarefa.data, tarefa.prioridade)
 
   limparForm()
   // salvarLista()
+  console.log(listaDeTarefas)
 })
 
 function limparForm() {
@@ -34,7 +37,11 @@ function limparForm() {
   prioridade.value = ''
 }
 
-function inserirTarefa(descricao, data, prioridade) {
+// function gerarId() {
+
+// }
+
+function renderTarefa(descricao, data, prioridade) {
   // TODO estilizar elemento da tarefa
 
   // 1 - Nova tarefa
@@ -51,6 +58,7 @@ function inserirTarefa(descricao, data, prioridade) {
   const descricaoTarefa = document.createElement('label')
   descricaoTarefa.innerText = descricao
 
+  // Add input + descrição no Div
   divForm.appendChild(inputCheck)
   divForm.appendChild(descricaoTarefa)
 
