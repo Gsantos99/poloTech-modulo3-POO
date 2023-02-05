@@ -4,9 +4,12 @@ import { Item } from './assets/classes/item.js'
 const item1 = new Item('Treinar', '2023-02-01', 'normal')
 // console.log(item1)
 
-// Onde as tarefas serão inseridas!
+// Onde as tarefas serão exibidas!
 const containerTarefas = document.querySelector('.lista-de-tarefas')
-let listaDeTarefas = [] // vai receber os objetos
+
+// Onde as tarefas serão inseridas!
+let listaDeTarefas = baixarLista() 
+console.log(listaDeTarefas)
 
 // Captura de informações do user
 const descricao = document.querySelector('#input-tarefa')
@@ -26,11 +29,16 @@ btnForm.addEventListener('click', e => {
 
   if (formValido) {
     let tarefa = new Item(descricao.value, data.value, prioridade.value)
+    // Adiciona tarefa no array
     listaDeTarefas.push(tarefa)
+
+    // Salva lista
+    salvarLista()
 
     // Cria elemento na página
     renderTarefa(tarefa.descricao, tarefa.data, tarefa.prioridade, tarefa.id)
 
+    // Limpa formulário
     limparForm()
 
     console.log(listaDeTarefas)
@@ -38,6 +46,19 @@ btnForm.addEventListener('click', e => {
     alert('Preencher todos os campos')
   }
 })
+
+function salvarLista() {
+  let listaString = JSON.stringify(listaDeTarefas)
+  localStorage.setItem('lista de tarefas', listaString)
+}
+
+function baixarLista() {
+
+  let listaString = localStorage.getItem('lista de tarefas')
+  // Transforma a lista de string para array novamente 
+  return JSON.parse(listaString) || []
+
+}
 
 function limparForm() {
   descricao.value = ''
@@ -50,8 +71,18 @@ function editarTarefa(id) {
 }
 
 function excluirTarefa(id) {
+  
+  // Exclui tarefa do array de tarefas
+  listaDeTarefas.filter(tarefas => {
+    return tarefas.id !== id })
+ 
+  // Atualiza Lista
+  salvarLista()
+
+  // Seleciona o item pelo ID e remove da página 
   const itemRemovido = document.getElementById(`item:${id}`)
   itemRemovido.remove()
+
 }
 
 function renderTarefa(descricao, data, prioridade, id) {
@@ -110,3 +141,5 @@ function renderTarefa(descricao, data, prioridade, id) {
   // 4 - Exibe na página
   containerTarefas.appendChild(novaTarefa)
 }
+
+
