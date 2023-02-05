@@ -16,19 +16,27 @@ const btnForm = document.querySelector('#btn-form')
 
 // Adição de uma nova tarefa
 btnForm.addEventListener('click', e => {
-  // Previne o submit
+  // Previne o submit do form
   e.preventDefault()
 
-  // TODO Criar um validador pra impedir o envio de objetos vazios
-
   // Cria novos objetos e manda para função que cria eles
-  let tarefa = new Item(descricao.value, data.value, prioridade.value)
-  listaDeTarefas.push(tarefa)
-  renderTarefa(tarefa.descricao, tarefa.data, tarefa.prioridade)
 
-  limparForm()
-  // salvarLista()
-  console.log(listaDeTarefas)
+  const formValido =
+    descricao.value != '' && data.value != '' && prioridade.value != ''
+
+  if (formValido) {
+    let tarefa = new Item(descricao.value, data.value, prioridade.value)
+    listaDeTarefas.push(tarefa)
+
+    // Cria elemento na página
+    renderTarefa(tarefa.descricao, tarefa.data, tarefa.prioridade, tarefa.id)
+
+    limparForm()
+
+    console.log(listaDeTarefas)
+  } else {
+    alert('Preencher todos os campos')
+  }
 })
 
 function limparForm() {
@@ -37,15 +45,21 @@ function limparForm() {
   prioridade.value = ''
 }
 
-// function gerarId() {
+function editarTarefa(id) {
+  alert(`EDITAR -> Item id = ${id}`)
+}
 
-// }
+function excluirTarefa(id) {
+  const itemRemovido = document.getElementById(`item:${id}`)
+  itemRemovido.remove()
+}
 
-function renderTarefa(descricao, data, prioridade) {
+function renderTarefa(descricao, data, prioridade, id) {
   // TODO estilizar elemento da tarefa
 
-  // 1 - Nova tarefa
-  const novaTarefa = document.createElement('li')
+  // 1 - Nova tarefa com ID único
+  let novaTarefa = document.createElement('li')
+  novaTarefa.id = `item:${id}`
 
   // 2 - Cria elementos que compõem a tarefa! (li)
 
@@ -53,9 +67,11 @@ function renderTarefa(descricao, data, prioridade) {
   const divForm = document.createElement('div')
   const inputCheck = document.createElement('input')
   inputCheck.type = 'checkbox'
+  inputCheck.id = id
 
   // Discrição da tarefa
   const descricaoTarefa = document.createElement('label')
+  descricaoTarefa.setAttribute('for', id)
   descricaoTarefa.innerText = descricao
 
   // Add input + descrição no Div
@@ -69,11 +85,20 @@ function renderTarefa(descricao, data, prioridade) {
   const dataTarefa = document.createElement('p')
   dataTarefa.innerText = data
 
-  // Botões
+  // Botões e escutadores!
   const btnEditar = document.createElement('button')
-  const btnExcluir = document.createElement('button')
   btnEditar.innerText = 'Editar'
+
+  btnEditar.addEventListener('click', () => {
+    editarTarefa(id)
+  })
+
+  const btnExcluir = document.createElement('button')
   btnExcluir.innerText = 'Excluir'
+
+  btnExcluir.addEventListener('click', () => {
+    excluirTarefa(id)
+  })
 
   // 3 - Adiciona elementos no li inicial
   novaTarefa.appendChild(divForm)
