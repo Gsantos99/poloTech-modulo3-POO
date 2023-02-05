@@ -8,7 +8,7 @@ const item1 = new Item('Treinar', '2023-02-01', 'normal')
 const containerTarefas = document.querySelector('.lista-de-tarefas')
 
 // Onde as tarefas serão inseridas!
-let listaDeTarefas = baixarLista() 
+let listaDeTarefas = baixarLista()
 console.log(listaDeTarefas)
 
 // Captura de informações do user
@@ -53,11 +53,20 @@ function salvarLista() {
 }
 
 function baixarLista() {
-
   let listaString = localStorage.getItem('lista de tarefas')
-  // Transforma a lista de string para array novamente 
+  // Transforma a lista de string para array novamente
   return JSON.parse(listaString) || []
+}
 
+function carregarTarefas() {
+  listaDeTarefas.map(tarefas => {
+    renderTarefa(
+      tarefas.descricao,
+      tarefas.data,
+      tarefas.prioridade,
+      tarefas.id
+    )
+  })
 }
 
 function limparForm() {
@@ -71,18 +80,17 @@ function editarTarefa(id) {
 }
 
 function excluirTarefa(id) {
-  
-  // Exclui tarefa do array de tarefas
-  listaDeTarefas.filter(tarefas => {
-    return tarefas.id !== id })
- 
-  // Atualiza Lista
+  // 1- Exclui tarefa do array de tarefas -> Pegando a lista e passando um filter 
+  listaDeTarefas = listaDeTarefas.filter(tarefas => {
+    return tarefas.id !== id
+  })
+
+  // Atualiza Lista no localStorange
   salvarLista()
 
-  // Seleciona o item pelo ID e remove da página 
+  // Seleciona o item pelo ID e remove da página
   const itemRemovido = document.getElementById(`item:${id}`)
   itemRemovido.remove()
-
 }
 
 function renderTarefa(descricao, data, prioridade, id) {
@@ -142,4 +150,4 @@ function renderTarefa(descricao, data, prioridade, id) {
   containerTarefas.appendChild(novaTarefa)
 }
 
-
+carregarTarefas() // Carrega as tarefas na página
