@@ -36,12 +36,20 @@ form button {
 
 /* Container principal  */
 .container {
+  
   margin: 0 auto;
   height: 500px;
   width: 100;
   max-width: 40vw;
   margin: 0 auto;
   padding: 20px;
+}
+
+.lista-de-tarefas {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ gap:10px;
 }
 
 .container h3 {
@@ -53,6 +61,26 @@ form button {
   line-height: 30px;
   list-style: none;
 }
+
+.tarefa {
+  width: 150px;
+  border: solid 2px;
+  border-radius: 10px;
+  padding: 10px; 
+  text-align: center;
+ background-color: lightcoral;
+ display: flex;
+ flex-direction: column;
+ 
+}
+
+.btnTarefa {
+  margin-top: 2px;
+  padding: 5px
+}
+
+
+
 
 
 /* Icone do título */

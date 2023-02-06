@@ -77,6 +77,7 @@ function limparForm() {
 }
 
 function editarTarefa(id) {
+  // TODO Impedir duplicidade de btns
   // Criando Btn Atualizar
   const btnAtualizar = document.createElement('button')
   btnAtualizar.innerText = 'Atualizar'
@@ -152,6 +153,7 @@ function renderTarefa(descricao, data, prioridade, id) {
 
   // 1 - Nova tarefa com ID único
   let novaTarefa = document.createElement('li')
+  novaTarefa.setAttribute('class', 'tarefa')
   novaTarefa.id = `item:${id}`
 
   // 2 - Cria elementos que compõem a tarefa! (li)
@@ -180,6 +182,7 @@ function renderTarefa(descricao, data, prioridade, id) {
 
   // Botões e escutadores!
   const btnEditar = document.createElement('button')
+  btnEditar.setAttribute('class', 'btnTarefa')
   btnEditar.innerText = 'Editar'
 
   btnEditar.addEventListener('click', () => {
@@ -187,6 +190,7 @@ function renderTarefa(descricao, data, prioridade, id) {
   })
 
   const btnExcluir = document.createElement('button')
+  btnExcluir.setAttribute('class', 'btnTarefa')
   btnExcluir.innerText = 'Excluir'
 
   btnExcluir.addEventListener('click', () => {
@@ -205,3 +209,12 @@ function renderTarefa(descricao, data, prioridade, id) {
 }
 
 carregarTarefas() // Carrega as tarefas na página
+
+document.addEventListener('click', e => {
+  let el = e.target.type
+  console.log(el)
+
+  if (el === 'checkbox') {
+    console.log('tarefa concluida')
+  }
+})
