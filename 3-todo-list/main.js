@@ -15,6 +15,7 @@ console.log(listaDeTarefas)
 const descricao = document.querySelector('#input-tarefa')
 const data = document.querySelector('#input-date')
 const prioridade = document.querySelector('#select-options')
+const formulario = document.querySelector('form')
 const btnForm = document.querySelector('#btn-form')
 
 // Adição de uma nova tarefa
@@ -76,11 +77,64 @@ function limparForm() {
 }
 
 function editarTarefa(id) {
-  alert(`EDITAR -> Item id = ${id}`)
+  // Criando Btn Atualizar
+  const btnAtualizar = document.createElement('button')
+  btnAtualizar.innerText = 'Atualizar'
+  btnAtualizar.setAttribute('id', 'btnAtualizar')
+  // Criando Btn Cancelar
+  const btnCancelar = document.createElement('button')
+  btnCancelar.setAttribute('id', 'btnEditar')
+  btnCancelar.innerText = 'Cancelar'
+
+  // Desativando o btn de adicionar tarefas
+  btnForm.setAttribute('disabled', true)
+  // Inserindo os btns dentro do form
+  formulario.appendChild(btnAtualizar)
+  formulario.appendChild(btnCancelar)
+
+  btnAtualizar.addEventListener('click', () => {
+    // Seleciono oq for inserido no form
+    const descricaoEditada = document.querySelector('#input-tarefa').value
+    const dataEditada = document.querySelector('#input-date').value
+    const prioridadesEditada = document.querySelector('#select-options').value
+
+    // Atuliza os valores dentro do array
+    listaDeTarefas.forEach(tarefa => {
+      if (tarefa.id === id) {
+        tarefa.descricao = descricaoEditada
+        tarefa.data = dataEditada
+        tarefa.prioridade = prioridadesEditada
+      }
+    })
+
+    // Atualizo o array
+    salvarLista()
+
+    // Apaga tarefa antiga
+    const tarefaAntiga = document.getElementById(`item:${id}`)
+    tarefaAntiga.remove()
+
+    //  Insere tarefa editada na página
+    renderTarefa(descricaoEditada, dataEditada, prioridadesEditada, id)
+
+    // Remove botões
+    btnAtualizar.remove()
+    btnCancelar.remove()
+
+    // Ativa novemnte o btn do form
+    btnForm.removeAttribute('disabled')
+
+    limparForm()
+  })
+
+  btnCancelar.addEventListener('click', () => {
+    btnAtualizar.remove()
+    btnCancelar.remove()
+  })
 }
 
 function excluirTarefa(id) {
-  // 1- Exclui tarefa do array de tarefas -> Pegando a lista e passando um filter 
+  // 1- Exclui tarefa do array de tarefas -> Pegando a lista e passando um filter
   listaDeTarefas = listaDeTarefas.filter(tarefas => {
     return tarefas.id !== id
   })

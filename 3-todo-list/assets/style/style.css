@@ -30,6 +30,10 @@ button {
   padding: 10px;
 }
 
+form button {
+ margin-left: 5px;
+}
+
 /* Container principal  */
 .container {
   margin: 0 auto;
