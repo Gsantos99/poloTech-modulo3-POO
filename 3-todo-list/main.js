@@ -1,9 +1,5 @@
 import { Item } from './assets/classes/item.js'
 
-// Exemplo de uma instância da Class item
-const item1 = new Item('Treinar', '2023-02-01', 'normal')
-// console.log(item1)
-
 // Onde as tarefas serão exibidas!
 const containerTarefas = document.querySelector('.lista-de-tarefas')
 
@@ -39,7 +35,7 @@ btnForm.addEventListener('click', e => {
     // Cria elemento na página
     renderTarefa(tarefa.descricao, tarefa.data, tarefa.prioridade, tarefa.id)
 
-    // Limpa formulário
+    // Limpar formulário
     limparForm()
 
     console.log(listaDeTarefas)
@@ -131,6 +127,7 @@ function editarTarefa(id) {
   btnCancelar.addEventListener('click', () => {
     btnAtualizar.remove()
     btnCancelar.remove()
+    btnForm.removeAttribute('disabled')
   })
 }
 
@@ -149,8 +146,6 @@ function excluirTarefa(id) {
 }
 
 function renderTarefa(descricao, data, prioridade, id) {
-  // TODO estilizar elemento da tarefa
-
   // 1 - Nova tarefa com ID único
   let novaTarefa = document.createElement('li')
   novaTarefa.setAttribute('class', 'tarefa')
@@ -210,11 +205,12 @@ function renderTarefa(descricao, data, prioridade, id) {
 
 carregarTarefas() // Carrega as tarefas na página
 
-document.addEventListener('click', e => {
-  let el = e.target.type
-  console.log(el)
+// Salvar checked
+// document.addEventListener('click', e => {
+//   let el = e.target.type
+//   console.log(el)
 
-  if (el === 'checkbox') {
-    console.log('tarefa concluida')
-  }
-})
+//   if (el === 'checkbox') {
+//     console.log('tarefa concluida')
+//   }
+// })

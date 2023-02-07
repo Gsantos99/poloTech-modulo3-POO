@@ -14,6 +14,10 @@ h1 {
   font-size: 2.3rem;
 }
 
+h3 {
+  text-align: center;
+}
+
 header {
   background-color: rgba(37, 160, 236, 0.539);
   text-align: center;
