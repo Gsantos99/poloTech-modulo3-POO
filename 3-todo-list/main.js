@@ -1,5 +1,6 @@
 import { Item } from './assets/classes/item.js'
 
+// TODO 3 - Separar as funções em arquivos JS
 // Onde as tarefas serão exibidas!
 const containerTarefas = document.querySelector('.lista-de-tarefas')
 
@@ -74,6 +75,7 @@ function limparForm() {
 
 function editarTarefa(id) {
   // TODO Impedir duplicidade de btns
+
   // Criando Btn Atualizar
   const btnAtualizar = document.createElement('button')
   btnAtualizar.innerText = 'Atualizar'
@@ -83,45 +85,56 @@ function editarTarefa(id) {
   btnCancelar.setAttribute('id', 'btnEditar')
   btnCancelar.innerText = 'Cancelar'
 
-  // Desativando o btn de adicionar tarefas
-  btnForm.setAttribute('disabled', true)
-  // Inserindo os btns dentro do form
-  formulario.appendChild(btnAtualizar)
-  formulario.appendChild(btnCancelar)
+  const btnAtualizarExiste = document.querySelector('form > #btnAtualizar')
+
+  if (!btnAtualizarExiste) {
+    // Desativando o btn de adicionar tarefas
+    btnForm.setAttribute('disabled', true)
+    // Inserindo os btns dentro do form
+    formulario.appendChild(btnAtualizar)
+    formulario.appendChild(btnCancelar)
+  }
 
   btnAtualizar.addEventListener('click', () => {
-    // Seleciono oq for inserido no form
-    const descricaoEditada = document.querySelector('#input-tarefa').value
-    const dataEditada = document.querySelector('#input-date').value
-    const prioridadesEditada = document.querySelector('#select-options').value
+    const formValido =
+      descricao.value != '' && data.value != '' && prioridade.value != ''
 
-    // Atuliza os valores dentro do array
-    listaDeTarefas.forEach(tarefa => {
-      if (tarefa.id === id) {
-        tarefa.descricao = descricaoEditada
-        tarefa.data = dataEditada
-        tarefa.prioridade = prioridadesEditada
-      }
-    })
+    if (formValido) {
+      // Seleciono oq for inserido no form
+      const descricaoEditada = document.querySelector('#input-tarefa').value
+      const dataEditada = document.querySelector('#input-date').value
+      const prioridadesEditada = document.querySelector('#select-options').value
 
-    // Atualizo o array
-    salvarLista()
+      // Atuliza os valores dentro do array
+      listaDeTarefas.forEach(tarefa => {
+        if (tarefa.id === id) {
+          tarefa.descricao = descricaoEditada
+          tarefa.data = dataEditada
+          tarefa.prioridade = prioridadesEditada
+        }
+      })
 
-    // Apaga tarefa antiga
-    const tarefaAntiga = document.getElementById(`item:${id}`)
-    tarefaAntiga.remove()
+      // Atualizo o array
+      salvarLista()
 
-    //  Insere tarefa editada na página
-    renderTarefa(descricaoEditada, dataEditada, prioridadesEditada, id)
+      // Apaga tarefa antiga
+      const tarefaAntiga = document.getElementById(`item:${id}`)
+      tarefaAntiga.remove()
 
-    // Remove botões
-    btnAtualizar.remove()
-    btnCancelar.remove()
+      //  Insere tarefa editada na página
+      renderTarefa(descricaoEditada, dataEditada, prioridadesEditada, id)
 
-    // Ativa novemnte o btn do form
-    btnForm.removeAttribute('disabled')
+      // Remove botões
+      btnAtualizar.remove()
+      btnCancelar.remove()
 
-    limparForm()
+      // Ativa novemnte o btn do form
+      btnForm.removeAttribute('disabled')
+
+      limparForm()
+    } else {
+      alert('Preencha todos os campos para editar a tarefa!')
+    }
   })
 
   btnCancelar.addEventListener('click', () => {
@@ -204,6 +217,8 @@ function renderTarefa(descricao, data, prioridade, id) {
 }
 
 carregarTarefas() // Carrega as tarefas na página
+
+// TODO 2 - Criar estilo para quando a tarefa for concluida!
 
 // Salvar checked
 // document.addEventListener('click', e => {
