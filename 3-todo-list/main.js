@@ -74,7 +74,6 @@ function limparForm() {
 }
 
 function editarTarefa(id) {
-  // TODO Impedir duplicidade de btns
 
   // Criando Btn Atualizar
   const btnAtualizar = document.createElement('button')
@@ -221,11 +220,11 @@ carregarTarefas() // Carrega as tarefas na página
 // TODO 2 - Criar estilo para quando a tarefa for concluida!
 
 // Salvar checked
-// document.addEventListener('click', e => {
-//   let el = e.target.type
-//   console.log(el)
+document.addEventListener('click', e => {
+  let el = e.target.type
+  console.log(el)
 
-//   if (el === 'checkbox') {
-//     console.log('tarefa concluida')
-//   }
-// })
+  if (el === 'checkbox') {
+    console.log('tarefa concluida')
+  }
+})

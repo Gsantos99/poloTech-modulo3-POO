@@ -1,9 +1,8 @@
 # Polo tech Módulo 3: Programação Orientada a Objetos (POO)
 
-
 ![image](https://user-images.githubusercontent.com/94020264/213823919-5d47bbd1-f81a-4a4e-aba1-ef8d42061767.png)
 
-### Lista de exercícios 
+### Lista de exercícios
 
 ### 1º exercício - Classes no JavaScript
 
@@ -43,3 +42,14 @@ A ToDo List deve ser capaz de:
 
 <li> Marcar atividades (concluida/nao-concluida) </li>
 
+### 4º exercício - Crie sua própria Pokedex
+
+Crie sua própria pokedex!
+
+<li> Precisa ter cabeçalho, filtro de nome e a lista de pokemons </li>
+<li> Pode filtrar somente os 151 (que são os melhores). </li>
+
+Para isso basta consumir a Api PokéApi
+
+<li>Lista de Pokemons: https://pokeapi.co/api/v2/pokemon?limit={numero_maximo} </li>
+<li>Dados dos Pokemons: https://pokeapi.co/api/v2/pokemon/{nome_do_pokemon} </li>
