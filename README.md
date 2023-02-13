@@ -29,6 +29,7 @@ Toda vez que uma pokebola é usada, dando certo ou errado, será preciso reduzir
 Após 3 tentativas de captura, se não der certo, o pokemon selvagem automaticamente fugiu. Caso seja realizada a captura com sucesso, devemos incrementar a quantidade de pokemons que o treinador possui.
 
 ### 3º exercício - Todo List
+Link da minha solução: https://github.com/Gsantos99/todo-list-js
 
 A ToDo List deve ser capaz de:
 
@@ -41,6 +42,7 @@ A ToDo List deve ser capaz de:
 <li> Editar atividades </li>
 
 <li> Marcar atividades (concluida/nao-concluida) </li>
+
 
 ### 4º exercício - Crie sua própria Pokedex
 
